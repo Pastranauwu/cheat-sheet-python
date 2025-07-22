@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Cheat Sheet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <h1>Python Cheat Sheet</h1>
+        <p>Una guía de referencia rápida para conceptos básicos y comunes de Python.</p>
+    </header>
+
+    <main>
+        <section id="listas">
+            <h2>Listas</h2>
+            <p>Colección ordenada y mutable de elementos. Pueden contener diferentes tipos de datos.</p>
+            <pre><code class="python">
+# Crear
+mi_lista = [1, 2, 3, "hola", True]
+
+# Indexación y slicing
+mi_lista[0]         # 1
+mi_lista[-1]        # True
+mi_lista[1:4]       # [2, 3, "hola"]
+
+# Métodos útiles
+mi_lista.append(99)       # Añade al final
+mi_lista.insert(1, 2) # Inserta en índice 1
+mi_lista.remove("hola")   # Elimina el primer "hola"
+mi_lista.pop()            # Quita el último elemento
+mi_lista.index(2)         # Índice del valor 2
+mi_lista.count(3)         # Cuántas veces aparece 3
+# mi_lista.sort()           # Ordena (solo si todos son comparables)
+mi_lista.reverse()        # Invierte la lista
+
+# Funciones y operadores
+len(mi_lista)
+2 in mi_lista
+nueva = mi_lista + [10, 11]
+repetida = mi_lista * 2
+            </code></pre>
+        </section>
+
+        <section id="tuplas">
+            <h2>Tuplas</h2>
+            <p>Colección ordenada e inmutable de elementos. Una vez creadas, no se pueden modificar.</p>
+            <pre><code class="python">
+# Crear
+mi_tupla = (1, 2, 3)
+solo_uno = (5,)  # ¡Ojo con la coma!
+
+# Acceso igual que listas
+mi_tupla[0]
+mi_tupla[1:3]
+
+# Inmutables
+# mi_tupla[0] = 99  ❌ Error
+
+# Métodos útiles
+mi_tupla.count(2)
+mi_tupla.index(3)
+            </code></pre>
+        </section>
+
+        <section id="diccionarios">
+            <h2>Diccionarios</h2>
+            <p>Colección no ordenada de pares clave-valor. Son mutables.</p>
+            <pre><code class="python">
+# Crear
+persona = {"nombre": "Ana", "edad": 30}
+
+# Acceso
+persona["nombre"]
+persona.get("correo", "No disponible")
+
+# Modificar / Agregar
+persona["edad"] = 31
+persona["correo"] = "ana@mail.com"
+
+# Eliminar
+del persona["edad"]
+persona.pop("correo", None)
+
+# Recorrer
+for clave in persona:
+    print(clave, persona[clave])
+
+for clave, valor in persona.items():
+    print(clave, valor)
+
+# Métodos útiles
+persona.keys()
+persona.values()
+persona.items()
+persona.update({"edad": 25, "ciudad": "CDMX"})
+            </code></pre>
+        </section>
+
+        <section id="funciones">
+            <h2>Funciones</h2>
+            <p>Bloques de código reutilizables que realizan una tarea específica.</p>
+            <pre><code class="python">
+# Con parámetros opcionales
+def suma(a, b=5):
+    return a + b
+
+# Con *args y **kwargs
+def imprimir_todo(*args, **kwargs):
+    print(args)
+    print(kwargs)
+            </code></pre>
+        </section>
+
+        <section id="comprensiones">
+            <h2>Comprensiones (List & Dict)</h2>
+            <p>Forma concisa de crear listas y diccionarios.</p>
+            <pre><code class="python">
+# List comprehension
+cuadrados = [x**2 for x in range(5)]
+pares = [x for x in range(10) if x % 2 == 0]
+
+# Dict comprehension
+cuadrados_dict = {x: x**2 for x in range(5)}
+            </code></pre>
+        </section>
+
+        <section id="excepciones">
+            <h2>Manejo de Excepciones</h2>
+            <p>Permite manejar errores que ocurren durante la ejecución del programa.</p>
+            <pre><code class="python">
+try:
+    # Código que puede fallar
+    x = int(input("Dame un número: "))
+    resultado = 10 / x
+except ZeroDivisionError:
+    print("No puedes dividir entre cero.")
+except ValueError:
+    print("Eso no es un número.")
+            </code></pre>
+        </section>
+
+        <section id="archivos">
+            <h2>Manejo de Archivos</h2>
+            <p>Leer y escribir en archivos de texto.</p>
+            <pre><code class="python">
+# Leer un archivo
+with open("archivo.txt", "r") as f:
+    contenido = f.read()
+
+# Escribir en un archivo
+with open("nuevo.txt", "w") as f:
+    f.write("Hola mundo")
+            </code></pre>
+        </section>
+
+        <section id="lambdas">
+            <h2>Funciones Lambda</h2>
+            <p>Funciones anónimas y pequeñas definidas con la palabra clave `lambda`.</p>
+            <pre><code class="python">
+doble = lambda x: x * 2
+print(doble(4))  # 8
+            </code></pre>
+        </section>
+
+        <section id="utilidades">
+            <h2>Funciones Útiles (enumerate, zip)</h2>
+            <p>Herramientas convenientes para iterar.</p>
+            <pre><code class="python">
+# Enumerate: Obtiene índice y valor
+for i, letra in enumerate("hola"):
+    print(i, letra)
+
+# Zip: Combina dos o más iterables
+a = [1, 2, 3]
+b = ["a", "b", "c"]
+for x, y in zip(a, b):
+    print(x, y)
+            </code></pre>
+        </section>
+
+        <section id="decoradores">
+            <h2>Decoradores</h2>
+            <p>Función que toma otra función y extiende su comportamiento sin modificarla explícitamente.</p>
+            <pre><code class="python">
+def decorador(func):
+    def envuelto():
+        print("Antes")
+        func()
+        print("Después")
+    return envuelto
+
+@decorador
+def saluda():
+    print("Hola")
+
+saluda()
+            </code></pre>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Creado con ❤️</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
